@@ -10,7 +10,7 @@ class Set:
         self.num_parts = int(num_parts)
         self.image_url = image_url
     
-    def read_sets_csv():
+    def update_sets_db():
         sets = []
 
         with open("../csv_files/sets.csv", "r") as csvfile:
