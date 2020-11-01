@@ -1,4 +1,3 @@
-from flask import url_for
 from app import app, db
 from app.models.sets import Set
 from flask import render_template, request, redirect
@@ -19,12 +18,13 @@ def upload_csv():
     if request.method == 'POST':
         csv_file = request.files['file']
         csv_file = TextIOWrapper(csv_file, encoding='utf-8')
-        csv_reader = csv.reader(csv_file, delimiter=',', skipinitialspace=True)
+        csv_reader = csv.reader(csv_file, delimiter=',')
+        next(csv_reader)
         for row in csv_reader:
             set = Set(set_num=row[0], name=row[1], year=row[2], theme_id=row[3], num_parts=row[4], image_url='')
             db.session.add(set)
             db.session.commit()
-        return redirect(url_for('/sets'))
+        return redirect('http://127.0.0.1:5000/sets')
     return """
             <form method='post' action='/update' enctype='multipart/form-data'>
               Upload a csv file: <input type='file' name='file'>
