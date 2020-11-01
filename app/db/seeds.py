@@ -1,4 +1,3 @@
-from app import db
 from app.models.sets import *
 
 Set.query.delete()
@@ -8,6 +7,6 @@ db.session.add(set)
 db.session.commit()
 
 sets = Set.query.all()
-p(sets)
+print(sets)
 
 # ['9943-1', 'Axles and Extenders', '1998', '1', '54']
