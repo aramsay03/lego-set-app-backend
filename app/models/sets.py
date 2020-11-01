@@ -1,6 +1,7 @@
 from app import db
 import csv
 from pathlib import Path
+from io import TextIOWrapper
 
 class Set(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -23,13 +24,15 @@ class Set(db.Model):
     def __repr__(self):
         return '<Set {}>'.format(self.set_num)
     
-    def update_sets_db():
-        sets = []
-        csv_file_path = Path("/Users/alan/projects/python/lego_app/app/csv_files")
-        csv_to_open = csv_file_path / "sets.csv"
+    # def update_sets_db():
+    #     # sets = []
+    #     csv_file_path = Path("/Users/alan/projects/python/lego_app/app/csv_files")
+    #     csv_to_open = csv_file_path / "sets.csv"
+    #     # csv_file = TextIOWrapper(csv_to_open, "r", encoding='utf-8')
 
-        with open(csv_to_open, "r") as csvfile:
-            reader = csv.reader(csvfile, skipinitialspace=True)
-
-            for row in reader:
-                print(row)
+    #     with open(csv_to_open, "r") as csvfile:
+    #         csv_reader = csv.reader(csv_to_open, delimiter=',', skipinitialspace=True)
+    #         for row in csv_reader:
+    #             set = Set(set_num=row[0], name=row[1], year=row[2], theme_id=row[3], num_parts=row[4], image_url='')
+    #             db.session.add()
+    #             db.session.commit()
